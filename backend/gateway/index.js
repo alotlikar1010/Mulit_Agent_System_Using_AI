@@ -3,15 +3,17 @@ import dotenv from "dotenv";
 import proxy from "express-http-proxy";
 // import morgan from "morgan";
 // import mongoose from "mongoose";
-// import cors from "cors";
-
-//xWxPp59AimAWeV1S
-//alotlikar98_db_user
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
-
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+}))
+app.use(cookieParser());
 app.use("/auth", proxy(process.env.AUTH_SERVICE))
 
 const PORT = process.env.PORT || 3000;

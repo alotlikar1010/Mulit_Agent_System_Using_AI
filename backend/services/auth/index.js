@@ -5,8 +5,8 @@ import connectDB from "./config/db.js"
 // import morgan from "morgan";
 // import mongoose from "mongoose";
 // import cors from "cors";
-const PORT = process.env.PORT || 3000;
 dotenv.config();
+const PORT = process.env.PORT || 3000;
 connectDB();
 
 const app = express();
