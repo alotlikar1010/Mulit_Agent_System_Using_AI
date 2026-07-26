@@ -5,6 +5,8 @@ import proxy from "express-http-proxy";
 // import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { getCurrentUser } from "./controllers/user.controller";
+import protect from "./middleware/auth.middleware";
 
 dotenv.config();
 
@@ -14,7 +16,8 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser());
-app.use("/auth", proxy(process.env.AUTH_SERVICE))
+app.use("/api/auth", proxy(process.env.AUTH_SERVICE))
+app.get("/api/me", protect, getCurrentUser)
 
 const PORT = process.env.PORT || 3000;
 

@@ -39,24 +39,16 @@ export const login = async (req, res) => {
     }
 }
 
-// export const register = async (req, res) => {
-//     try {
 
-//         const { email, password } = req.body
-
-//         const user = await User.findOne({ email })
-//         if (user) {
-//             return res.status(404).json({ message: "User already exist" })
-//         }
-
-//         const newUser = new User({ email, password })
-//         await newUser.save()
-
-//         const token = generateToken(newUser._id)
-//         res.status(200).json({ token })
-//     }
-//     catch (error) {
-//         console.log(error)
-//         res.status(500).json({ message: "Internal server error" })
-//     }
-// }
+export const logout = async (req, res) => {
+    try {
+        const sessionId = req.cookies?.session
+        await redis.del(`session:${sessionId}`)
+        res.clearCookie("session")
+        res.status(200).json({ message: "User logged out" })
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Internal server error" })
+    }
+}
