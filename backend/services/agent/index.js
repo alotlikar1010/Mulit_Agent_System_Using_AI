@@ -11,5 +11,5 @@ app.use(express.json());
 app.use("/", router);
 
 app.listen(PORT, () => {
-    console.log(`Chat started at Port ${PORT}`);
+    console.log(`Agent started at Port ${PORT}`);
 });
