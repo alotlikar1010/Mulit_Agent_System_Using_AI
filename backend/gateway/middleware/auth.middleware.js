@@ -1,7 +1,7 @@
-import redis from "../../shared/redis/redis"
+import redis from "../../shared/redis/redis.js"
 
 
-const protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
     try {
 
         const sessionId = req.cookies?.session;
@@ -19,4 +19,4 @@ const protect = async (req, res, next) => {
     }
 };
 
-export default protect
+// export default protect
