@@ -1,12 +1,12 @@
-import api from "../utils/axios"
+import React from 'react'
+import api from '../../utils/axios'
 
-export const logOut = async () => {
-
+async function logOut() {
     try {
-        const { data } = await api.get("/api/chat/get-conversations")
-        return data
+        const { data } = await api.get("/api/auth/logout")
+        console.log(data)
     } catch (error) {
         console.log(error)
-        return []
     }
 }
+export default logOut
