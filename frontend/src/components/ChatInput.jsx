@@ -1,6 +1,6 @@
 import { Code2, FileText, Globe, ImageIcon, MessageSquare, Mic, MicOff, Paperclip, Presentation, Send, X, Zap } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import sendMessage from '../features/sendMessage'
+import { sendMessage } from '../features/sendMessage'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMessage, setArtifacts, setIsLoading, setMessages } from '../redux/messageSlice'
 import { createConversation } from '../features/createConversation'

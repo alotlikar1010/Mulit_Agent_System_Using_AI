@@ -3,7 +3,7 @@ import Nav from './Nav'
 import MessageList from './MessageList'
 import ChatInput from './ChatInput'
 import { useDispatch, useSelector } from 'react-redux'
-import getMessages from '../features/getMessages'
+import { getMessages } from '../features/getMessages'
 import { setArtifacts, setMessages } from '../redux/messageSlice'
 
 function ChatArea() {
