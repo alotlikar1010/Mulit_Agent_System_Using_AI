@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addConversation, setConversations, setSelectedConversation } from '../redux/conversationSlice'
 
 import { createConversation } from '../features/createConversation'
-// import logOut from '../features/logOut'
-// import { setUserData } from '../redux/userSlice'
+import { logOut } from '../features/logOut'
+import { setUserData } from '../redux/userSlice'
 //import BillingDrawer from './BillingDrawer'
 function SideBar() {
     const [collapsed, setCollapsed] = useState(false)
@@ -217,8 +217,8 @@ function SideBar() {
                                     </button>
                                     <button className='flex items-center justify-center w-7 h-7 rounded-[7px] border-none bg-transparent text-slate-600 cursor-pointer hover:bg-white/[0.08] hover:text-slate-400 transition-all duration-150'
                                         onClick={() => {
-                                            // logOut();
-                                            // dispatch(setUserData(null))
+                                            logOut();
+                                            dispatch(setUserData(null))
                                         }}
                                     >
                                         <LogOut size={16} />
