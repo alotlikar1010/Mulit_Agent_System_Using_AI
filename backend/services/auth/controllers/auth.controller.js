@@ -52,3 +52,36 @@ export const logout = async (req, res) => {
         res.status(500).json({ message: "Internal server error" })
     }
 }
+
+export const updateUserPayment = async (req, res) =>{
+    try{
+        const {plan, credits, UserId } = req.body
+        const user = await User.findById(UserId)
+        if (!user){
+                return res.status(404).json({message:"User not found"})
+        }
+        user.plan = plan
+        user.credits+=credits
+        user.totalCredits+=credits
+        user.planExpiresAt = new Date(Date.now() + 30 *24*60*60*1000)
+        await user.save()
+
+        const sessionId = await redis.get(`user-session-${user?._id}`)
+        console.log("sessionId", sessionId)
+        await redis.set(`session-${sessionId}`, JSON.stringify({
+            userId: user._id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            plan: user.plan,
+            credits: user.credits,
+            totalCredits: user.totalCredits,
+            planExpiresAt: user.planExpiresAt
+        }), "EX", 7 * 24 * 60 * 60)
+
+        return res.status(200).json({ success: true })
+    }
+    catch (error){
+        res.status(500).json({ message: "updateUserPayment server error" })
+    }
+}

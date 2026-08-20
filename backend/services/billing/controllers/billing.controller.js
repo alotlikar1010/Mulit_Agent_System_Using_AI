@@ -59,7 +59,9 @@ export const verifyPayment= async(req, res) =>{
         payment.status="paid"
         payment.paymentId = razorpay_payment_id
         await payment.save()
-
+        const {data}=await axios.post(`${process.env.AUTH_SERVICE}/update-plan`,{userId:payment.userId,plan:payment.plan,credits:payment.credits})
+        console.log(data)
+        return res.status(200).json({message:"Payment Verified"})
     }
     catch (error){
          return res.status(500).json({message:"verify error"})  

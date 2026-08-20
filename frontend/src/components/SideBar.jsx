@@ -9,7 +9,7 @@ import { addConversation, setConversations, setSelectedConversation } from '../r
 import { createConversation } from '../features/createConversation'
 import { logOut } from '../features/logOut'
 import { setUserData } from '../redux/userSlice'
-//import BillingDrawer from './BillingDrawer'
+import {BillingDrawer} from './BillingDrawer'
 function SideBar() {
     const [collapsed, setCollapsed] = useState(false)
     const dispatch = useDispatch()
@@ -235,10 +235,10 @@ function SideBar() {
             </div>
 
 
-            {/* <BillingDrawer
+            <BillingDrawer
                 open={showBilling}
                 onClose={() => setShowBilling(false)}
-            /> */}
+            />
 
         </>
     )
