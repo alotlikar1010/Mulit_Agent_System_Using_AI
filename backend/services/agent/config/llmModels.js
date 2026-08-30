@@ -2,8 +2,7 @@ import { ChatGroq } from "@langchain/groq"
 import { ChatOpenRouter } from "@langchain/openrouter";
 const groq = new ChatGroq({
     model: "groq/llama3.1-8b-instant",
-    // apiKey: process.env.GROQ_API_KEY,
-
+    apiKey: process.env.GROQ_API_KEY
 })
 
 const openrouter = new ChatOpenRouter({
